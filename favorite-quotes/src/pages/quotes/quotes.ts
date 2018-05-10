@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the QuotesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Quote } from '../../data/quote.interface';
+import { QuoteGroup } from '../../data/quote-group.interface';
 
 @IonicPage()
 @Component({
@@ -15,13 +11,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class QuotesPage {
 
-  public quotesCategory: string;
+  quoteGroup: QuoteGroup;
 
   constructor(private navCtrl: NavController, public navParams: NavParams) {
-    this.quotesCategory = this.navParams.data;
+    this.quoteGroup = this.navParams.data;
   }
 
+  // NOTE: indifferently to initialize it in constructor, ngOnInit and constructor are executed BEFORE template rendering
+  // ngOnInit() {
+  //   this.quoteGroup = this.navParams.data;
+  // }
+
   ionViewDidLoad() {
+    //NOTE: ionViewDidLoad triggers happens AFTER template rendering, so it is not a good idea to manipulate template variables here, or put a Elvis operator (?) alternatively on template where trying to access variable
     console.log('ionViewDidLoad QuotesPage');
   }
 

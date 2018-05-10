@@ -1,7 +1,7 @@
 export default [
   {
     category: 'movies',
-    quotes: [
+    quotes:[
       {
         id: '1',
         person: 'Raoul Duke',
@@ -22,7 +22,7 @@ export default [
   },
   {
     category: 'games',
-    quotes: [
+    quotes:[
       {
         id: '4',
         person: 'Sam Fisher',
@@ -38,7 +38,7 @@ export default [
   },
   {
     category: 'sports',
-    quotes: [
+    quotes:[
       {
         id: '6',
         person: 'Vujiadin Boskov',
@@ -54,7 +54,7 @@ export default [
   },
   {
     category: 'cazzario',
-    quotes: [
+    quotes:[
       {
         id: '8',
         person: 'Pea',
