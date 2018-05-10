@@ -10,6 +10,7 @@ import { LibraryPageModule } from '../pages/library/library.module';
 import { QuotesPageModule } from '../pages/quotes/quotes.module';
 import { QuotePageModule } from '../pages/quote/quote.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SettingsPageModule } from '../pages/settings/settings.module';
     QuotePageModule,
     QuotesPageModule,
     SettingsPageModule,
+    TabsPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
