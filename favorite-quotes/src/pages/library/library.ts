@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 import { QuotesPage } from '../quotes/quotes';
+import { Quote } from '../../data/quote.interface';
+import quotes from '../../data/quotes';
 
 /**
  * Generated class for the LibraryPage page.
@@ -15,13 +18,23 @@ import { QuotesPage } from '../quotes/quotes';
   selector: 'page-library',
   templateUrl: 'library.html',
 })
-export class LibraryPage {
+export class LibraryPage implements OnInit {
+
+  quotes: {
+    category: string,
+    quote: Quote[],
+    icon: string
+  }[];
 
   constructor(private navCtrl: NavController, private navParams: NavParams) {
   }
 
+  ngOnInit() {
+    this.quotes = quotes;
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LibraryPage');
+    console.log('ionViewDidLoad LibraryPage - quotes', this.quotes);
   }
 
   viewQuotes(quotesCategory: string) {
