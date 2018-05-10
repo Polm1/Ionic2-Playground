@@ -7,9 +7,9 @@
 
 <ion-content padding>
     <ion-list>
-      <ion-card *ngFor="let quote of quoteGroup.quotes" text-center>
+      <ion-card *ngFor="let quote of quoteGroup.quotes; let i= index" text-center>
         <ion-card-header>
-            {{ quote.person }}
+            #{{ i + 1 }} - {{ quote.person }}
           </ion-card-header>
           <ion-card-content>
               {{ quote.text }}
