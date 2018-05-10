@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  {{ name }}
+  <hr>
+  <button ion-button (click)="returnToDojo()">Return To Dojo</button>
+  <button ion-button (click)="flee()">Flee</button>
+  <button ion-button navPop>Flee Faster</button>
+</ion-content>
