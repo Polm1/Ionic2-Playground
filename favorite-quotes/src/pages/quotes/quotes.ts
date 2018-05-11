@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Quote } from '../../data/quote.interface';
 import { QuoteGroup } from '../../data/quote-group.interface';
@@ -13,7 +13,11 @@ export class QuotesPage {
 
   quoteGroup: QuoteGroup;
 
-  constructor(private navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private alertCtrl: AlertController
+  ) {
     this.quoteGroup = this.navParams.data;
   }
 
@@ -27,4 +31,30 @@ export class QuotesPage {
     console.log('ionViewDidLoad QuotesPage');
   }
 
+  showConfirmation(selectedQuote: Quote) {
+    const confirmAlert = this.alertCtrl.create({
+      title: 'Add Quote',
+      message: 'Iz rilly shure?',
+      buttons: [
+        {
+          text: 'No way',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Yessah',
+          handler: () => {
+            console.log('Agree clicked');
+            this.addToFavorites(selectedQuote);
+          }
+        }
+      ]
+    });
+    confirmAlert.present();
+  }
+
+  addToFavorites(selectedQuote: Quote) {
+    console.log('-- addToFavorites - selectedQuote', selectedQuote);
+  }
 }

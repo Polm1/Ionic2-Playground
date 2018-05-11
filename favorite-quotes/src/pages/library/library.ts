@@ -4,8 +4,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { QuotesPage } from '../quotes/quotes';
 import { Quote } from '../../data/quote.interface';
-import quotes from '../../data/quotes';
 import { QuoteGroup } from '../../data/quote-group.interface';
+import quotes from '../../data/quotes';
 
 @IonicPage()
 @Component({

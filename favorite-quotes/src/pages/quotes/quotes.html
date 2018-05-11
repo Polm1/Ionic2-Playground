@@ -9,14 +9,17 @@
     <ion-list>
       <ion-card *ngFor="let quote of quoteGroup.quotes; let i= index" text-center>
         <ion-card-header>
-            #{{ i + 1 }} - {{ quote.person }}
+            #{{ i + 1 }}
           </ion-card-header>
           <ion-card-content>
-              {{ quote.text }}
+              <p>{{ quote.text }}</p>
+              <p class="author">{{ quote.person }}</p>
           </ion-card-content>
           <ion-row class="action" text-right>
             <ion-col>
-                <ion-icon name="heart"></ion-icon><span>Favorite</span>
+              <button ion-button clear small icon-left (click)="showConfirmation(quote)">
+                <ion-icon name="heart"></ion-icon>Favorite
+              </button>
             </ion-col>
           </ion-row>
         </ion-card>
