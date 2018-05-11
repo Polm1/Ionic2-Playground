@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavParams, AlertController } from 'ionic-angular';
 
 import { Quote } from '../../data/quote.interface';
 import { QuoteGroup } from '../../data/quote-group.interface';
+import { QuotesService } from '../../services/quotes.service';
 
 @IonicPage()
 @Component({
@@ -14,9 +15,9 @@ export class QuotesPage {
   quoteGroup: QuoteGroup;
 
   constructor(
-    private navCtrl: NavController,
     private navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private quotesService: QuotesService
   ) {
     this.quoteGroup = this.navParams.data;
   }
@@ -31,30 +32,36 @@ export class QuotesPage {
     console.log('ionViewDidLoad QuotesPage');
   }
 
-  showConfirmation(selectedQuote: Quote) {
-    const confirmAlert = this.alertCtrl.create({
+  addToFavorites(selectedQuote: Quote) {
+    const addToFavoritesAlert = this.alertCtrl.create({
       title: 'Add Quote',
       message: 'Iz rilly shure?',
       buttons: [
         {
-          text: 'No way',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
           text: 'Yessah',
           handler: () => {
             console.log('Agree clicked');
-            this.addToFavorites(selectedQuote);
+            this.quotesService.addToFavorites(selectedQuote);
+          }
+        },
+        {
+          text: 'No way',
+          // NOTE: role: 'cancel' ensures that alert will be dismissed only clicking on this button, not on background too
+          // role: 'cancel',
+          handler: () => {
+            console.log('Disagree clicked');
           }
         }
       ]
     });
-    confirmAlert.present();
+    addToFavoritesAlert.present();
   }
 
-  addToFavorites(selectedQuote: Quote) {
-    console.log('-- addToFavorites - selectedQuote', selectedQuote);
+  removeFromFavorites(selectedQuote: Quote) {
+    this.quotesService.removeFromFavorites(selectedQuote);
+  }
+
+  isFavorite(selectedQuote: Quote) {
+    return this.quotesService.isFavorite(selectedQuote);
   }
 }
