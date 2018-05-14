@@ -15,7 +15,6 @@ export class FavoritesPage {
 
   public favoriteQuotes: Quote[];
   public quote: Quote;
-  public altBackground: boolean;
 
   constructor(
     private quoteservice: QuotesService,
@@ -23,11 +22,6 @@ export class FavoritesPage {
     private settingsService: SettingsService
   ) {
     this.favoriteQuotes = this.quoteservice.getFavorites();
-  }
-
-  ionViewWillEnter() {
-    let altBackground = this.settingsService.getBackground();
-    console.log('-- FavoritesPage - altBackground', altBackground);
   }
 
   view(quote: Quote) {
@@ -45,5 +39,9 @@ export class FavoritesPage {
     // with my implementation (that returns the real instance of favorites, not his copy) seems to work fine
     console.log('-- FavoritesPage.unfavoriteQuote - quote', quote);
     this.quoteservice.removeFromFavorites(quote);
+  }
+
+  getBackground() {
+    return this.settingsService.isAltBackground() ? 'quoteAltBackground':'quoteBackground';
   }
 }

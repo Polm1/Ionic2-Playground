@@ -30,6 +30,7 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    // NOTE: every component declared here, will be available for navigation stack: if we need a component only in home page, better to declare only on 'imports' and use it with its selector where needed
     MyApp
   ],
   providers: [

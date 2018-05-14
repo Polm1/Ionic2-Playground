@@ -19,4 +19,7 @@ export class SettingsPage {
     this.settingService.setBackground(toggle.checked);
   }
 
+  checkAltBackground() {
+    return this.settingService.isAltBackground();
+  }
 }

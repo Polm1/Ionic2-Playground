@@ -1,13 +1,13 @@
 export class SettingsService {
   public altBackground: boolean = false;
 
-  setBackground(value: boolean) {
-    console.log('-- SettingsService.setBackground ', value);
-    this.altBackground = value;
+  setBackground(isAlt: boolean) {
+    console.log('-- SettingsService.setBackground ', isAlt);
+    this.altBackground = isAlt;
   }
 
-  getBackground() {
-    console.log('-- SettingsService.getBackground ', this.altBackground);
+  isAltBackground() {
+    console.log('-- SettingsService.isAltBackground ', this.altBackground);
     return this.altBackground;
   }
 

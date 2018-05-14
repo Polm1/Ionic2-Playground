@@ -13,7 +13,8 @@
 <ion-content padding>
     <ion-list>
       <ion-item-sliding *ngFor="let favoriteQuote of favoriteQuotes; let i= index">
-        <ion-item (click)="view(favoriteQuote)"  color="quoteBackground">
+        <!-- NOTE: with this approach of swithcing background color through [color] is automatically set the font color with white in alt case and black in standard case...investigate further -->
+        <ion-item (click)="view(favoriteQuote)" [color]="getBackground()">
           <h2>{{ favoriteQuote.person }}</h2>
           <p>{{ favoriteQuote.text }}</p>
         </ion-item>
