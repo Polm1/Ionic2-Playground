@@ -1,13 +1,28 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <!-- menuToggle directive helps to auto manage the menu without injecting menuCtrl on component and/or implement public methods to open/close menu.Question: how is passed target menu? -->
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Favorite Quotes</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
     <ion-list>
-      <ion-item *ngFor="let favoriteQuote of favoriteQuotes; let i= index" (click)="view(favoriteQuote)">
-        <h2>{{ favoriteQuote.person }}</h2>
-        <p>{{ favoriteQuote.text }}</p>
-      </ion-item>
+      <ion-item-sliding *ngFor="let favoriteQuote of favoriteQuotes; let i= index">
+        <ion-item (click)="view(favoriteQuote)"  color="quoteBackground">
+          <h2>{{ favoriteQuote.person }}</h2>
+          <p>{{ favoriteQuote.text }}</p>
+        </ion-item>
+        <ion-item-options>
+          <button ion-button color="danger" (click)="unfavorite(favoriteQuote)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
 </ion-content>

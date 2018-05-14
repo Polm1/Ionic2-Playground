@@ -1,5 +1,11 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <!-- menuToggle directive helps to auto manage the menu without injecting menuCtrl on component and/or implement public methods to open/close menu.Question: how is passed target menu? -->
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
       Quotes Library
     </ion-title>

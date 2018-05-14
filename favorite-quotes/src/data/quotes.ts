@@ -5,7 +5,7 @@ export default [
       {
         id: '1',
         person: 'Raoul Duke',
-        text: 'La parola d\'ordine è "una mano lava l\'altra"... Quando te la senti dire, risponderai "non temo nulla". '
+        text: 'La parola d\'ordine è "una mano lava l\'altra"... Quando te la senti dire, risponderai "non temo nulla".'
       },
       {
         id: '2',
