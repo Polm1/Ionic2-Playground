@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>New Recipe</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form #form="ngForm" (ngSubmit)="logForm(form)">
+      <ion-item>
+        <ion-label floating><p>Title</p></ion-label>
+        <ion-input type="text" [(ngModel)]="newRecipe.title" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating><p>Description</p></ion-label>
+        <ion-textarea [(ngModel)]="newRecipe.description" name="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating><p>Difficulty</p></ion-label>
+        <ion-select [(ngModel)]="newRecipe.difficulty" name="difficulty">
+            <ion-option value=0>Easy</ion-option>
+            <ion-option value=1>Medium</ion-option>
+            <ion-option value=2>Hard</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button clear block (click)="manageIngredient()">Manage Ingredient</button>
+      <button ion-button type="submit" block>New Recipe</button>
+    </form>
+
+</ion-content>

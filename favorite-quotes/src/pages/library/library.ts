@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { QuotesPage } from '../quotes/quotes';
 import { Quote } from '../../data/quote.interface';
 import { QuoteGroup } from '../../data/quote-group.interface';
-import quotes from '../../data/quotes';
+import QuotesData from '../../data/quotes';
 
 @IonicPage()
 @Component({
@@ -20,7 +20,7 @@ export class LibraryPage implements OnInit {
   }
 
   ngOnInit() {
-    this.quotes = quotes;
+    this.quotes = QuotesData;
   }
 
   ionViewDidLoad() {
