@@ -5,6 +5,7 @@ import { TrackingService } from '../../services/tracking.service';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   public taps: number;
@@ -13,40 +14,37 @@ export class HomePage {
   constructor(
     private trackingService: TrackingService
   ) {
-    this.trackingService.resetAll();
-    this.taps = this.trackingService.getTaps();
-    this.presses = this.trackingService.getPresses();
+    this.taps = this.trackingService.resetTaps();
+    this.presses = this.trackingService.resetPresses();
   }
 
-  updateCount(change: { target: string, count: number }) {
-    switch (change.target) {
+  updateCount(target: string) {
+    switch (target) {
       case 'taps':
-        this.taps = change.count;
-        this.trackingService.setTaps(change.count);
-        break;
+        this.taps = this.trackingService.addTaps();
+      break;
       case 'presses':
-        this.presses = change.count;
-        this.trackingService.setPresses(change.count);
-        break;
+        this.presses = this.trackingService.addPresses();
+      break;
       default:
-        break;
+      break;
     }
   }
 
   resetCount(target: string) {
     switch (target) {
       case 'all':
-        this.taps = 0;
-        this.presses = 0;
-        break;
+        this.taps = this.trackingService.resetTaps();
+        this.presses = this.trackingService.resetPresses();
+      break;
       case 'taps':
-        this.taps = 0;
-        break;
+        this.taps = this.trackingService.resetTaps();;
+      break;
       case 'presses':
-        this.presses = 0;
-        break;
+        this.presses = this.trackingService.resetPresses();
+      break;
       default:
-        break;
+      break;
     }
   }
 
