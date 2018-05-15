@@ -12,12 +12,8 @@ import { TrackingService } from '../../services/tracking.service';
   templateUrl: 'reset.html'
 })
 export class ResetComponent {
+  @Output() resetEvent: EventEmitter<string>
 
-
-  @Output()
-  resetEvent: EventEmitter<string>
-
-  EventEmitter
   constructor(
     private trackingService: TrackingService
   ) {
@@ -28,17 +24,15 @@ export class ResetComponent {
     switch (target) {
       case 'all':
         this.trackingService.resetAll();
-        this.resetEvent.emit('all');
       break;
       case 'taps':
-        this.trackingService.resetTaps();
-        this.resetEvent.emit('taps');
+          this.trackingService.resetTaps();
       break;
       case 'presses':
         this.trackingService.resetPresses();
-        this.resetEvent.emit('presses');
       break;
     }
+    this.resetEvent.emit(target);
   }
 
 }

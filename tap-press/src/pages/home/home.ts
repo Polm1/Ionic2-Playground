@@ -14,8 +14,8 @@ export class HomePage {
     private trackingService: TrackingService
   ) {
     this.trackingService.resetAll();
-    this.taps = this.trackingService.getTaps()
-    this.presses = this.trackingService.getPresses()
+    this.taps = this.trackingService.getTaps();
+    this.presses = this.trackingService.getPresses();
   }
 
   updateCount(change: { target: string, count: number }) {
@@ -48,6 +48,10 @@ export class HomePage {
       default:
         break;
     }
+  }
+
+  youWin() {
+    return ((this.taps === 2) && (this.presses === 4));
   }
 
 }

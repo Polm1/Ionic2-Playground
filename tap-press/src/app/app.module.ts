@@ -26,6 +26,7 @@ import { TrackingService } from '../services/tracking.service';
   entryComponents: [
     MyApp,
     HomePage
+    //NOTE: no need to declare action and reset components as entryComponents, because they are used with selector in a template
   ],
   providers: [
     StatusBar,

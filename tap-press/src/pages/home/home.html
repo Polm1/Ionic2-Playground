@@ -7,22 +7,35 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <p>Tapped: {{ taps }}</p>
-        </ion-item>
-        <ion-item>
-          <p>Pressed: {{ presses }}</p>
-        </ion-item>
-      </ion-list>
-      <tap-press-reset
-        (resetEvent)="resetCount($event)"
-        ></tap-press-reset>
-      <tap-press-action
-        (changeEvent)="updateCount($event)"
-      ></tap-press-action>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid text-center>
+    <ion-row>
+      <ion-col>
+        <h3>Enter the right code</h3>
+        <p *ngIf="youWin() === false">Tap twice, the press four times</p>
+        <p *ngIf="youWin() === true">Bravoh</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <ion-list>
+            <ion-item>
+              <p>Tapped: {{ taps }}</p>
+            </ion-item>
+            <ion-item>
+              <p>Pressed: {{ presses }}</p>
+            </ion-item>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <tap-press-reset
+          (resetEvent)="resetCount($event)"
+          ></tap-press-reset>
+      </ion-col>
+    </ion-row>
+    <tap-press-action
+      (changeEvent)="updateCount($event)"
+    ></tap-press-action>
+  </ion-grid>
 </ion-content>
