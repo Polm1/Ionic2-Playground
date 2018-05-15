@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <p>Tapped: {{ taps }}</p>
+        </ion-item>
+        <ion-item>
+          <p>Pressed: {{ presses }}</p>
+        </ion-item>
+      </ion-list>
+      <tap-press-reset
+        (resetEvent)="resetCount($event)"
+        ></tap-press-reset>
+      <tap-press-action
+        (changeEvent)="updateCount($event)"
+      ></tap-press-action>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
