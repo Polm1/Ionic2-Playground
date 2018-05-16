@@ -13,6 +13,7 @@ import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.mod
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 import { ShoppingListService } from '../pages/services/shopping-list.service';
+import { RecipeService } from '../pages/services/recipe.service';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ShoppingListService } from '../pages/services/shopping-list.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RecipeService,
     ShoppingListService
   ]
 })

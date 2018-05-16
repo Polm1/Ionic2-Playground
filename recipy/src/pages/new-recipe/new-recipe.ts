@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
-import { ActionSheetController, IonicPage, AlertController } from 'ionic-angular';
+import { ActionSheetController, IonicPage, AlertController, ToastController } from 'ionic-angular';
+import { RecipeService } from '../services/recipe.service';
 
 @IonicPage()
 @Component({
@@ -15,13 +16,17 @@ export class NewRecipePage {
 
   constructor(
     private actionSheetController: ActionSheetController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController,
+    private recipeService: RecipeService
   ) {
     this.initializeForm();
   }
 
-  submit() {
+  addRecipe() {
+    //NOTE: fix newRecipeForm
     console.log(this.newRecipeForm);
+    // this.recipeService.addRecipe(this.newRecipeForm.value);
   }
 
   manageIngredients() {
@@ -33,7 +38,8 @@ export class NewRecipePage {
       {
         'title': new FormControl(null, Validators.required),
         'description': new FormControl(null, Validators.required),
-        'difficulty': new FormControl('Medium', Validators.required)
+        'difficulty': new FormControl('Medium', Validators.required),
+        'ingredients': new FormArray([])
       }
     );
   }
@@ -54,6 +60,14 @@ export class NewRecipePage {
           role: 'destructive',
           handler: () => {
             console.log('Remove all Ingredients clicked');
+            const ingredientsArray: FormArray = (<FormArray>this.newRecipeForm.get('ingredients'));
+            const len = ingredientsArray.length;
+            if(len > 0) {
+              for(let i = len - 1; i >= 0; i--) {
+                ingredientsArray.removeAt(i);
+              }
+            }
+            this.fireToast('All ingredients removed!');
           }
         },
         {
@@ -70,10 +84,10 @@ export class NewRecipePage {
 
   private addIngredientAlert() {
     let alert = this.alertController.create({
-      title: 'Add Ingredint',
+      title: 'Add Ingredient',
       inputs: [
         {
-          name: 'ingredient',
+          name: 'ingredientName',
           placeholder: 'Salsiccia molta'
         }
       ],
@@ -81,19 +95,33 @@ export class NewRecipePage {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: data => {
+          handler: (data) => {
             console.log('Cancel clicked');
           }
         },
         {
           text: 'Add',
-          handler: data => {
-            //TODO: add validation
-            console.log(data);
+          handler: (data) => {
+            // NOTE: "arabeggiant" stuff here...not sure if goosta...
+            if(data.ingredientName.trim() == '' || data.ingredientName == '') {
+              this.fireToast('Please enter a valid ingredient!');
+            } else {
+              (<FormArray>this.newRecipeForm.get('ingredients')).push(new FormControl(data.ingredientName, Validators.required));
+              this.fireToast('Ingredient added!');
+            }
           }
         }
       ]
     });
     alert.present();
+  }
+
+  private fireToast(message: string) {
+    let toast = this.toastController.create({
+      message: message,
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }
