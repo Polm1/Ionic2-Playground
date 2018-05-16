@@ -1,18 +1,18 @@
-import { ShoppingItem } from '../../models/shopping-item.model';
+import { Ingredient } from '../../models/ingredient.model';
 
 
 export class ShoppingListService {
-  private shoppingList: ShoppingItem[] = [];
+  private shoppingList: Ingredient[] = [];
 
-  addItem(shoppingItem: ShoppingItem) {
+  addItem(shoppingItem: Ingredient) {
     this.shoppingList.push(shoppingItem);
   }
 
-  addItems(shoppingItems: ShoppingItem[]) {
+  addItems(shoppingItems: Ingredient[]) {
     this.shoppingList.push(...shoppingItems);
   }
 
-  removeItem(shoppingItem: ShoppingItem) {
+  removeItem(shoppingItem: Ingredient) {
     let itemIndex = this.shoppingList.indexOf(shoppingItem);
     this.shoppingList.splice(itemIndex, 1);
   }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { ActionSheetController, IonicPage, AlertController, ToastController } from 'ionic-angular';
 import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../../models/recipe.model';
 
 @IonicPage()
 @Component({
@@ -24,9 +25,13 @@ export class NewRecipePage {
   }
 
   addRecipe() {
-    //NOTE: fix newRecipeForm
-    console.log(this.newRecipeForm);
-    // this.recipeService.addRecipe(this.newRecipeForm.value);
+    let recipe = new Recipe(
+      this.newRecipeForm.value.title,
+      this.newRecipeForm.value.description,
+      this.newRecipeForm.value.difficulty,
+      this.newRecipeForm.value.ingredients,
+    );
+    this.recipeService.addRecipe(recipe);
   }
 
   manageIngredients() {
@@ -51,7 +56,6 @@ export class NewRecipePage {
         {
           text: 'Add Ingredient',
           handler: () => {
-            console.log('Add Ingredient clicked');
             this.addIngredientAlert();
           }
         },
@@ -59,7 +63,6 @@ export class NewRecipePage {
           text: 'Remove all Ingredients',
           role: 'destructive',
           handler: () => {
-            console.log('Remove all Ingredients clicked');
             const ingredientsArray: FormArray = (<FormArray>this.newRecipeForm.get('ingredients'));
             const len = ingredientsArray.length;
             if(len > 0) {
@@ -74,7 +77,7 @@ export class NewRecipePage {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            // console.log('Cancel clicked');
           }
         }
       ]
@@ -96,7 +99,7 @@ export class NewRecipePage {
           text: 'Cancel',
           role: 'cancel',
           handler: (data) => {
-            console.log('Cancel clicked');
+            // console.log('Cancel clicked');
           }
         },
         {
