@@ -38,9 +38,8 @@
         <p>{{ item.name }} ({{ item.amount }})</p>
       </ion-item>
       <ion-item-options>
-        <button ion-button (click)="removeItem(item)" color="danger">
+        <button ion-button (click)="removeItem(item)" color="danger" icon-only>
           <ion-icon name="trash"></ion-icon>
-          Delete
         </button>
       </ion-item-options>
     </ion-item-sliding>
