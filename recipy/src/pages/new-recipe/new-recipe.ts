@@ -33,7 +33,7 @@ export class NewRecipePage {
     this.initializeForm();
   }
 
-  addRecipe() {
+  saveRecipe() {
     const value = this.newRecipeForm.value;
     let ingredients = [];
     if(value.ingredients.length > 0) {
@@ -49,7 +49,12 @@ export class NewRecipePage {
       value.difficulty,
       ingredients,
     );
-    this.recipeService.addRecipe(recipe);
+
+    if(this.navParams.get('targetRecipe') !== null) {
+      this.recipeService.updateRecipe(this.targetRecipe, recipe);
+    } else {
+      this.recipeService.addRecipe(recipe);
+    }
   }
 
   manageIngredients() {
