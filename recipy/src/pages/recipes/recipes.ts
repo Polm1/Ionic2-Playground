@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { NewRecipePage } from '../new-recipe/new-recipe';
+import { SaveRecipePage } from '../save-recipe/save-recipe';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeService } from '../services/recipe.service';
 import { RecipePage } from '../recipe/recipe';
@@ -19,7 +19,7 @@ import { RecipePage } from '../recipe/recipe';
   templateUrl: 'recipes.html',
 })
 export class RecipesPage {
-  public newRecipePage = NewRecipePage;
+  public saveRecipePage = SaveRecipePage;
   public recipePage = RecipePage
 
   public recipes: Recipe[];

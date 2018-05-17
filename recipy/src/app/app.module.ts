@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { NewRecipePageModule } from '../pages/new-recipe/new-recipe.module';
+import { SaveRecipePageModule } from '../pages/save-recipe/save-recipe.module';
 import { RecipePageModule } from '../pages/recipe/recipe.module';
 import { RecipesPageModule } from '../pages/recipes/recipes.module';
 import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.module';
@@ -22,7 +22,7 @@ import { RecipeService } from '../pages/services/recipe.service';
   ],
   imports: [
     BrowserModule,
-    NewRecipePageModule,
+    SaveRecipePageModule,
     RecipePageModule,
     RecipesPageModule,
     ShoppingListPageModule,

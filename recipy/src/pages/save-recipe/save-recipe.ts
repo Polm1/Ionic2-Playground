@@ -7,14 +7,14 @@ import { Recipe } from '../../models/recipe.model';
 
 @IonicPage()
 @Component({
-  selector: 'page-new-recipe',
-  templateUrl: 'new-recipe.html',
+  selector: 'page-save-recipe',
+  templateUrl: 'save-recipe.html',
 })
 // NOTE: reactive approach
 // TODO: refactor renaming with more general semantic than "new"
-export class NewRecipePage {
+export class SaveRecipePage {
   targetRecipe: Recipe;
-  newRecipeForm: FormGroup;
+  saveRecipeForm: FormGroup;
   difficultyOptions: Array<string>;
 
   constructor(
@@ -35,11 +35,11 @@ export class NewRecipePage {
   }
 
   saveRecipe() {
-    const value = this.newRecipeForm.value;
+    const value = this.saveRecipeForm.value;
     let ingredients = [];
     if(value.ingredients.length > 0) {
       ingredients = value.ingredients.map((name) => {
-        console.log('-- NewRecipePage.addRecipe - name', name);
+        console.log('-- SaveRecipePage.addRecipe - name', name);
         return { name: name, amount: 1 };
       })
     }
@@ -58,7 +58,7 @@ export class NewRecipePage {
       this.recipeService.addRecipe(recipe);
       this.fireToast('Recipe added!');
     }
-    this.newRecipeForm.reset();
+    this.initializeForm();
   }
 
   manageIngredients() {
@@ -74,7 +74,7 @@ export class NewRecipePage {
       ingredients.push(new FormControl(ingredient.name, Validators.required));
     }
 
-    this.newRecipeForm = new FormGroup(
+    this.saveRecipeForm = new FormGroup(
       {
         'title': new FormControl(title, Validators.required),
         'description': new FormControl(description, Validators.required),
@@ -98,7 +98,7 @@ export class NewRecipePage {
           text: 'Remove all Ingredients',
           role: 'destructive',
           handler: () => {
-            const ingredientsArray: FormArray = (<FormArray>this.newRecipeForm.get('ingredients'));
+            const ingredientsArray: FormArray = (<FormArray>this.saveRecipeForm.get('ingredients'));
             const len = ingredientsArray.length;
             if(len > 0) {
               for(let i = len - 1; i >= 0; i--) {
@@ -144,7 +144,7 @@ export class NewRecipePage {
             if(data.ingredientName.trim() == '' || data.ingredientName == '') {
               this.fireToast('Please enter a valid ingredient!');
             } else {
-              (<FormArray>this.newRecipeForm.get('ingredients')).push(new FormControl(data.ingredientName, Validators.required));
+              (<FormArray>this.saveRecipeForm.get('ingredients')).push(new FormControl(data.ingredientName, Validators.required));
               this.fireToast('Ingredient added!');
             }
           }

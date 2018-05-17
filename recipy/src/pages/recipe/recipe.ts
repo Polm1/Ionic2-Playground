@@ -6,7 +6,7 @@ import { Ingredient } from '../../models/ingredient.model';
 import { ShoppingListService } from '../services/shopping-list.service';
 import { RecipeService } from '../services/recipe.service';
 
-import { NewRecipePage } from '../new-recipe/new-recipe';
+import { SaveRecipePage } from '../save-recipe/save-recipe';
 
 @IonicPage()
 @Component({
@@ -16,7 +16,7 @@ import { NewRecipePage } from '../new-recipe/new-recipe';
 export class RecipePage {
 
   public recipe: Recipe;
-  public newRecipePage: any;
+  public saveRecipePage: any;
 
   constructor(
     private navParams: NavParams,
@@ -27,7 +27,7 @@ export class RecipePage {
     private recipeService: RecipeService
   ) {
     this.recipe = this.navParams.data;
-    this.newRecipePage = NewRecipePage;
+    this.saveRecipePage = SaveRecipePage;
   }
 
   addToShoppingList(ingredients: Ingredient[]) {
