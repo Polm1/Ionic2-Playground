@@ -11,4 +11,12 @@ export class RecipeService {
   getRecipes() {
     return this.recipes;
   }
+
+  updateRecipe(recipe: Recipe) {
+    console.log('-- RecipeService.updateRecipe - recipe', recipe);
+  }
+
+  removeRecipe(recipe: Recipe) {
+    console.log('-- RecipeService.removeRecipe - recipe', recipe);
+  }
 }

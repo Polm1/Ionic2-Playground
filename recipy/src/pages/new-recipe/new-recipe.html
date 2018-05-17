@@ -6,7 +6,7 @@
 
 <!-- NOTE: reactive approach -->
 <ion-content padding>
-  <form [formGroup]="newRecipeForm" (submit)="addRecipe()">
+  <form [formGroup]="newRecipeForm" (ngSubmit)="addRecipe()">
     <ion-list>
       <ion-item>
           <ion-label floating><p>Title</p></ion-label>
@@ -24,14 +24,12 @@
         </ion-item>
     </ion-list>
     <ion-list formArrayName="ingredients">
-      <ion-list-header>
-          <button ion-button clear block (click)="manageIngredients()">Manage Ingredients</button>
-      </ion-list-header>
+      <button ion-item no-lines type="button" clear block (click)="manageIngredients()">Manage Ingredients</button>
       <!-- NOTE: "arabeggiant" stuff here...not sure if goosta... -->
       <ion-item *ngFor="let ingredient of newRecipeForm.get('ingredients').controls; let i = index;">
         <ion-input type="text" [formControlName]="i"></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button type="submit" block [disabled]="newRecipeForm.valid === false">New Recipe</button>
+    <button ion-button type="submit" block [disabled]="newRecipeForm.valid === false">Save Recipe</button>
   </form>
 </ion-content>

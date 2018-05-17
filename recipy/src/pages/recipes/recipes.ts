@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { NewRecipePage } from '../new-recipe/new-recipe';
+import { Recipe } from '../../models/recipe.model';
+import { RecipeService } from '../services/recipe.service';
+import { RecipePage } from '../recipe/recipe';
 
 /**
  * Generated class for the RecipesPage page.
@@ -17,12 +20,17 @@ import { NewRecipePage } from '../new-recipe/new-recipe';
 })
 export class RecipesPage {
   public newRecipePage = NewRecipePage;
+  public recipePage = RecipePage
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public recipes: Recipe[];
+
+  constructor(
+    private recipeService: RecipeService
+  ) {
+    //
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipesPage');
+  ionViewWillEnter() {
+    this.recipes = this.recipeService.getRecipes();
   }
-
 }

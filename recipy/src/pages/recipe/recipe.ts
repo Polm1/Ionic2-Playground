@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RecipePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavParams, NavController, ToastController } from 'ionic-angular';
+import { Recipe } from '../../models/recipe.model';
+import { Ingredient } from '../../models/ingredient.model';
+import { ShoppingListService } from '../services/shopping-list.service';
+import { RecipeService } from '../services/recipe.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +12,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RecipePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public recipe: Recipe;
+
+  constructor(
+    private navController: NavController,
+    private navParams: NavParams,
+    private toastController: ToastController,
+    private shoppingListService: ShoppingListService,
+    private recipeService: RecipeService
+  ) {
+    this.recipe = this.navParams.data;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipePage');
+  addToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addItems(ingredients);
+    let toast = this.toastController.create({
+      message: 'All ingredients were added to your shopping list!',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
+  editRecipe(recipe: Recipe) {
+    console.log('-- RecipePage.editRecipe - recipe', recipe);
+    // this.navController.push();
+  }
+
+  deleteRecipe(recipe: Recipe) {
+    this.recipeService.removeRecipe(recipe);
+    let toast = this.toastController.create({
+      message: 'Recipe deleted!',
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
 }

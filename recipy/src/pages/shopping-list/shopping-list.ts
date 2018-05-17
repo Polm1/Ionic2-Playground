@@ -14,7 +14,7 @@ export class ShoppingListPage {
   public shoppingList: Ingredient[];
 
   constructor(private shoppingListService: ShoppingListService) {
-    //
+    this.loadShoppingList();
   }
 
   addItem(form: NgForm) {

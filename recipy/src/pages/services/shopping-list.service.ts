@@ -10,6 +10,14 @@ export class ShoppingListService {
 
   addItems(shoppingItems: Ingredient[]) {
     this.shoppingList.push(...shoppingItems);
+
+    // let redux = this.shoppingList.reduce((item) => {
+    //   console.log(item);
+    //   return item;
+    // });
+    // console.log(redux);
+
+    console.log('-- addItems - this.shoppingList', this.shoppingList);
   }
 
   removeItem(shoppingItem: Ingredient) {

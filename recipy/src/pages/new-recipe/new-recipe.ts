@@ -25,11 +25,21 @@ export class NewRecipePage {
   }
 
   addRecipe() {
+    const value = this.newRecipeForm.value;
+    let ingredients = [];
+    if(value.ingredients.length > 0) {
+      ingredients = value.ingredients.map((name) => {
+        console.log('-- NewRecipePage.addRecipe - name', name);
+        return { name: name, amount: 1 };
+      })
+    }
+    console.log('-- NewRecipePage.addRecipe - ingredients', ingredients);
+
     let recipe = new Recipe(
-      this.newRecipeForm.value.title,
-      this.newRecipeForm.value.description,
-      this.newRecipeForm.value.difficulty,
-      this.newRecipeForm.value.ingredients,
+      value.title,
+      value.description,
+      value.difficulty,
+      ingredients,
     );
     this.recipeService.addRecipe(recipe);
   }
