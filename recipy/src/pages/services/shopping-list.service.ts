@@ -11,7 +11,7 @@ export class ShoppingListService {
   addItems(shoppingItems: Ingredient[]) {
     this.shoppingList.push(...shoppingItems);
 
-    //TODO: check how to merge ingredients
+    // TODO: check how to merge ingredients
     // let redux = this.shoppingList.reduce((item) => {
     //   console.log(item);
     //   return item;

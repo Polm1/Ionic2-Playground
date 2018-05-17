@@ -10,7 +10,8 @@ import { Recipe } from '../../models/recipe.model';
   selector: 'page-new-recipe',
   templateUrl: 'new-recipe.html',
 })
-//NOTE: reactive approach
+// NOTE: reactive approach
+// TODO: refactor renaming with more general semantic than "new"
 export class NewRecipePage {
   targetRecipe: Recipe;
   newRecipeForm: FormGroup;
@@ -52,9 +53,12 @@ export class NewRecipePage {
 
     if(this.navParams.get('targetRecipe') !== null) {
       this.recipeService.updateRecipe(this.targetRecipe, recipe);
+      this.fireToast('Recipe updated!');
     } else {
       this.recipeService.addRecipe(recipe);
+      this.fireToast('Recipe added!');
     }
+    this.newRecipeForm.reset();
   }
 
   manageIngredients() {

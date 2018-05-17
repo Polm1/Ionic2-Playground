@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavParams, ToastController, NavController, AlertController } from 'ionic-angular';
 
 import { Recipe } from '../../models/recipe.model';
 import { Ingredient } from '../../models/ingredient.model';
@@ -20,6 +20,8 @@ export class RecipePage {
 
   constructor(
     private navParams: NavParams,
+    private navController: NavController,
+    private alertController: AlertController,
     private toastController: ToastController,
     private shoppingListService: ShoppingListService,
     private recipeService: RecipeService
@@ -38,18 +40,32 @@ export class RecipePage {
     toast.present();
   }
 
-  editRecipe(recipe: Recipe) {
-    console.log('-- RecipePage.editRecipe - recipe', recipe);
-    // this.navController.push();
-  }
-
   deleteRecipe(recipe: Recipe) {
-    this.recipeService.removeRecipe(recipe);
-    let toast = this.toastController.create({
-      message: 'Recipe deleted!',
-      duration: 1000,
-      position: 'bottom'
+    let alert = this.alertController.create({
+      title: 'Sure to delete this recipe?',
+      buttons: [
+        {
+          text: 'No way!!',
+          role: 'cancel',
+          handler: (data) => {
+            // console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yessah',
+          handler: () => {
+            this.recipeService.removeRecipe(recipe);
+            let toast = this.toastController.create({
+              message: 'Recipe deleted!',
+              duration: 1000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.navController.popToRoot();
+          }
+        }
+      ]
     });
-    toast.present();
+    alert.present();
   }
 }
