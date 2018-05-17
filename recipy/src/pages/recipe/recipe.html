@@ -40,10 +40,10 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button outline (click)="editRecipe(recipe)">Edit recipe</button>
+        <button ion-button outline [navPush]="newRecipePage" [navParams]="{ targetRecipe: recipe }">Edit recipe</button>
       </ion-col>
       <ion-col>
-        <button ion-button outline (click)="deleteRecipe(recipe)">Edit recipe</button>
+        <button ion-button outline (click)="deleteRecipe(recipe)" color="danger">Delete recipe</button>
       </ion-col>
     </ion-row>
   </ion-grid>

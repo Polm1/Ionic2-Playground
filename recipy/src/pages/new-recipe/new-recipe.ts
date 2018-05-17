@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
-import { ActionSheetController, IonicPage, AlertController, ToastController } from 'ionic-angular';
+import { ActionSheetController, IonicPage, AlertController, ToastController, NavParams } from 'ionic-angular';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../../models/recipe.model';
 
@@ -12,15 +12,24 @@ import { Recipe } from '../../models/recipe.model';
 })
 //NOTE: reactive approach
 export class NewRecipePage {
+  targetRecipe: Recipe;
   newRecipeForm: FormGroup;
-  difficultyOptions = ['Easy', 'Medium', 'Hard'];
+  difficultyOptions: Array<string>;
 
   constructor(
     private actionSheetController: ActionSheetController,
     private alertController: AlertController,
     private toastController: ToastController,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private navParams: NavParams
   ) {
+    this.difficultyOptions = ['Easy', 'Medium', 'Hard'];
+
+    if(this.navParams.get('targetRecipe') !== null) {
+      this.targetRecipe = this.navParams.get('targetRecipe');
+    } else {
+      this.targetRecipe = new Recipe(null, null, 'Medium', []);
+    }
     this.initializeForm();
   }
 
@@ -33,7 +42,6 @@ export class NewRecipePage {
         return { name: name, amount: 1 };
       })
     }
-    console.log('-- NewRecipePage.addRecipe - ingredients', ingredients);
 
     let recipe = new Recipe(
       value.title,
@@ -49,12 +57,20 @@ export class NewRecipePage {
   }
 
   private initializeForm() {
+    let title = this.targetRecipe.title;
+    let description = this.targetRecipe.description;
+    let difficulty = this.targetRecipe.difficulty;
+    let ingredients = []
+    for (let ingredient of this.targetRecipe.ingredients) {
+      ingredients.push(new FormControl(ingredient.name, Validators.required));
+    }
+
     this.newRecipeForm = new FormGroup(
       {
-        'title': new FormControl(null, Validators.required),
-        'description': new FormControl(null, Validators.required),
-        'difficulty': new FormControl('Medium', Validators.required),
-        'ingredients': new FormArray([])
+        'title': new FormControl(title, Validators.required),
+        'description': new FormControl(description, Validators.required),
+        'difficulty': new FormControl(difficulty, Validators.required),
+        'ingredients': new FormArray(ingredients)
       }
     );
   }

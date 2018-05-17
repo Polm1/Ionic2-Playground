@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavParams, ToastController } from 'ionic-angular';
+
 import { Recipe } from '../../models/recipe.model';
 import { Ingredient } from '../../models/ingredient.model';
 import { ShoppingListService } from '../services/shopping-list.service';
 import { RecipeService } from '../services/recipe.service';
+
+import { NewRecipePage } from '../new-recipe/new-recipe';
 
 @IonicPage()
 @Component({
@@ -13,15 +16,16 @@ import { RecipeService } from '../services/recipe.service';
 export class RecipePage {
 
   public recipe: Recipe;
+  public newRecipePage: any;
 
   constructor(
-    private navController: NavController,
     private navParams: NavParams,
     private toastController: ToastController,
     private shoppingListService: ShoppingListService,
     private recipeService: RecipeService
   ) {
     this.recipe = this.navParams.data;
+    this.newRecipePage = NewRecipePage;
   }
 
   addToShoppingList(ingredients: Ingredient[]) {
