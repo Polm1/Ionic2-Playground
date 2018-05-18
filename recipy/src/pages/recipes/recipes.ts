@@ -3,7 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { SaveRecipePage } from '../save-recipe/save-recipe';
 import { Recipe } from '../../models/recipe.model';
-import { RecipeService } from '../services/recipe.service';
+import { RecipeService } from '../../services/recipe.service';
 import { RecipePage } from '../recipe/recipe';
 
 /**

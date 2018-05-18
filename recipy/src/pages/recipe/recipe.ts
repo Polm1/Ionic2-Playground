@@ -3,8 +3,8 @@ import { IonicPage, NavParams, ToastController, NavController, AlertController }
 
 import { Recipe } from '../../models/recipe.model';
 import { Ingredient } from '../../models/ingredient.model';
-import { ShoppingListService } from '../services/shopping-list.service';
-import { RecipeService } from '../services/recipe.service';
+import { ShoppingListService } from '../../services/shopping-list.service';
+import { RecipeService } from '../../services/recipe.service';
 
 import { SaveRecipePage } from '../save-recipe/save-recipe';
 

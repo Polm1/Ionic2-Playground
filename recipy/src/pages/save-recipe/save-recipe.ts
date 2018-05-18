@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { ActionSheetController, IonicPage, AlertController, ToastController, NavParams } from 'ionic-angular';
-import { RecipeService } from '../services/recipe.service';
+import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../models/recipe.model';
 
 @IonicPage()
