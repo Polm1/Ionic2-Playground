@@ -12,8 +12,8 @@
       <button ion-item icon-left (click)="load(signupPage)">
         <ion-icon name="person-add" color="primary"></ion-icon>Signup
       </button>
-      <button ion-item icon-left (click)="load(signinPage)">
-        <ion-icon name="log-in" color="primary"></ion-icon>Signin
+      <button ion-item icon-left (click)="load(loginPage)">
+        <ion-icon name="log-in" color="primary"></ion-icon>Login
       </button>
       <button ion-item icon-left (click)="logout()">
         <ion-icon name="exit-outline" color="primary"></ion-icon>Logout
@@ -22,4 +22,5 @@
   </ion-content>
 </ion-menu>
 
-<ion-nav #nav [root]="tabsPage"></ion-nav>
+<!-- <ion-nav #nav [root]="tabsPage"></ion-nav> -->
+<ion-nav #nav [root]="signupPage"></ion-nav>

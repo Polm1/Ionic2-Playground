@@ -10,5 +10,24 @@
 </ion-header>
 
 <ion-content padding>
-
+  <h2 text-center>Register here</h2>
+  <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>
+          <ion-icon name="mail" color="primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" name="email" placeholder="allyoucaneat@google.it" required ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>
+          <ion-icon name="key" color="primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" name="password" placeholder="y0uRsup3rS3cr3Tp4ssW0rd" required minlength="6" ngModel></ion-input>
+      </ion-item>
+    </ion-list>
+    <button type="submit" ion-button block [disabled]="signupForm.invalid">Register me!</button>
+  </form>
 </ion-content>

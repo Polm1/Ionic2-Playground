@@ -5,10 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RecipesPage } from '../pages/recipes/recipes';
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
-import { SigninPage } from '../pages/signin/signin';
+import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 
+
+import { env } from '../../environments/config.dev';
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +19,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   recipesPage:any = RecipesPage;
   shoppingListPage:any = ShoppingListPage;
-  signinPage:any = SigninPage;
+  loginPage:any = LoginPage;
   signupPage:any = SignupPage;
   tabsPage:any = TabsPage;
 
@@ -28,6 +31,12 @@ export class MyApp {
     splashScreen: SplashScreen,
     private menuController: MenuController
   ) {
+    // NOTE: first things first :)
+    firebase.initializeApp({
+      apiKey: env.firebase.apiKey,
+      authDomain: env.firebase.authDomain
+    });
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

@@ -10,12 +10,13 @@ import { RecipePageModule } from '../pages/recipe/recipe.module';
 import { RecipesPageModule } from '../pages/recipes/recipes.module';
 import { SaveRecipePageModule } from '../pages/save-recipe/save-recipe.module';
 import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.module';
-import { SigninPageModule } from '../pages/signin/signin.module';
+import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 
-import { ShoppingListService } from '../services/shopping-list.service';
+import { AuthService } from '../services/auth.service';
 import { RecipeService } from '../services/recipe.service';
+import { ShoppingListService } from '../services/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RecipeService } from '../services/recipe.service';
     RecipePageModule,
     RecipesPageModule,
     ShoppingListPageModule,
-    SigninPageModule,
+    LoginPageModule,
     SignupPageModule,
     TabsPageModule,
     IonicModule.forRoot(MyApp)
@@ -40,6 +41,7 @@ import { RecipeService } from '../services/recipe.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService,
     RecipeService,
     ShoppingListService
   ]
